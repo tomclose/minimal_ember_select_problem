@@ -27,7 +27,11 @@ App.AuthorsController = Ember.ArrayController.extend();
 
 App.PostController = Ember.ObjectController.extend({
   needs: ['authors'],
-  authors: Ember.computed.alias('controllers.authors'),
+  // authors: Ember.computed.alias('controllers.authors'),
+  authors: function() {
+    return Em.A([this.store.find('author', 2), this.store.find('author', 1)]);
+    // return Em.A([]);
+  }.property('controllers.authors'), 
 
   names: ["Tom", "Bob"]
 });
